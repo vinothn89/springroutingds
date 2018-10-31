@@ -15,8 +15,8 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired
-    private DataDAO dataDAO;
+   /* @Autowired
+    private DataDAO dataDAO;*/
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String home(Model model) throws SQLException{

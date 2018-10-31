@@ -17,11 +17,15 @@ import org.springframework.core.env.Environment;
 
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.concurrent.Executor;
 
 @SpringBootApplication
+@EnableAsync
 /*@EnableJpaRepositories(basePackages = "com.company.springbootroutingds")*/
 
 //@EnableAutoConfiguration
@@ -59,7 +63,19 @@ public class SpringbootroutingdsApplication {
 		return dataSource;
 
 	}
+	
+	@Bean(name="asyncExecutor")
+    public Executor asyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(2);
+        executor.setMaxPoolSize(2);
+        executor.setQueueCapacity(500);
+        executor.setThreadNamePrefix("DataDAOLookup-");
+        executor.initialize();
+        return executor;
+    }
 
+	@Autowired
 	@Bean(name = "dataSource1")
 	public DataSource getDataSource1() throws SQLException{
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();

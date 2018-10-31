@@ -41,15 +41,8 @@ public class DataSourceInterceptor extends HandlerInterceptorAdapter{
         }
         
         else if(uri.startsWith(prefixDatabase)){   
-        	System.out.println("entering bam");
-        	if ("bam".equalsIgnoreCase(request.getParameter("env").toString()))
-        		
-        			{
-        		System.out.println("inside bam");
-        		 request.setAttribute("keyDS", "ADVERTISER_DS");
-        		
-        			}
         	
+        		 request.setAttribute("keyDS", "ADVERTISER_DS");
         }
         return  true;
     }

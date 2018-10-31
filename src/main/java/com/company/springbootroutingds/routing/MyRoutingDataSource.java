@@ -27,7 +27,7 @@ public class MyRoutingDataSource extends AbstractRoutingDataSource{
         System.out.println("KeyDS=" + keyDS);
 
         if (keyDS == null){
-            keyDS = "PUBLISHER_DS";
+            keyDS = "ADVERTISER_DS";
         }
         return keyDS;
     }
